@@ -1,17 +1,18 @@
 import React from 'react'
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import Login from './pages/Login'
-import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import UploadGame from './pages/UploadGame'
 import FAQ from './pages/FAQ'
 import Contact from './pages/Contact'
+import Dashboard from './admin/Dashboard'
+import Signup from './pages/Signup'
+import ProductTable from './data/ProductTable'
 
 function App() {
  return(
   <>
   <Router>
-    <Navbar />
     <Routes>
       <Route path='/' element={<Home />} />
       <Route path='/home' element={<Home />} />
@@ -19,6 +20,9 @@ function App() {
       <Route path='/faq' element={<FAQ />}></Route>
       <Route path='/contact' element={<Contact />} />
       <Route path='/login' element={<Login />} />
+      <Route path='/signup' element={<Signup />} />
+      
+      <Route path='/admin/dashboard' element={<Dashboard />} />
     </Routes>
   </Router>
   </>

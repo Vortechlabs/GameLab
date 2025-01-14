@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\consoles;
+use App\Models\Consoles;
 use Illuminate\Http\Request;
 
 class ConsoleControler extends Controller
 {
     public function index(){
-        $consoles = consoles::all();
+        $consoles = Consoles::with('consoles')->get();
         return response() -> json([
             'status' => 'success',
             'data' => $consoles,

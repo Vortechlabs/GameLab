@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../assets/react.svg';
+import logo from '../assets/logo.png';
 import { NavLink } from 'react-router-dom';
 
 function Navbar () {
@@ -13,11 +13,11 @@ function Navbar () {
       </div>
       <div className='hidden md:flex items-center gap-5 font-bold'>
       <NavLink to="/" className={({ isActive }) => isActive ? 'hidden' : 'hidden'}>Home</NavLink>
-      <NavLink to="/home" className={({ isActive }) => isActive ? 'text-[#59cedd]' : 'text-black dark:text-white hover:text-[#41aab8]'}>Home</NavLink>
-        <NavLink to="/upload-game" className={({ isActive }) => isActive ? 'text-[#59cedd]' : 'text-black dark:text-white hover:text-[#41aab8]'}>Upload Game</NavLink>
-        <NavLink to="/faq" className={({ isActive }) => isActive ? 'text-[#59cedd]' : 'text-black dark:text-white hover:text-[#41aab8]'}>FaQ</NavLink>
-        <NavLink to="/contact" className={({ isActive }) => isActive ? 'text-[#59cedd]' : 'text-black dark:text-white hover:text-[#41aab8]'}>Contact</NavLink>
-        <NavLink to="/login" className={({ isActive }) => isActive ? 'text-[#59cedd]' : 'text-black dark:text-white hover:text-[#41aab8]'}>Login</NavLink>
+      <NavLink to="/home" className={({ isActive }) => isActive ? 'text-[#59cedd]' : 'text-black  hover:text-[#41aab8]'}>Home</NavLink>
+        <NavLink to="/upload-game" className={({ isActive }) => isActive ? 'text-[#59cedd]' : 'text-black  hover:text-[#41aab8]'}>Upload Game</NavLink>
+        <NavLink to="/faq" className={({ isActive }) => isActive ? 'text-[#59cedd]' : 'text-black  hover:text-[#41aab8]'}>FaQ</NavLink>
+        <NavLink to="/contact" className={({ isActive }) => isActive ? 'text-[#59cedd]' : 'text-black  hover:text-[#41aab8]'}>Contact</NavLink>
+        <NavLink to="/login" className={({ isActive }) => isActive ? 'text-[#59cedd]' : 'text-black  hover:text-[#41aab8]'}>Login</NavLink>
       </div>
       
     </nav>

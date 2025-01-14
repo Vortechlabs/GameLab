@@ -1,8 +1,13 @@
 import React from 'react'
+import Navbar from '../components/Navbar'
 
 function FAQ() {
   return (
-    <div>FAQ</div>
+    <div>
+    <Navbar />
+    <div className='mt-24'></div>
+
+      FAQ</div>
   )
 }
 

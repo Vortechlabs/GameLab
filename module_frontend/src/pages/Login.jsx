@@ -1,51 +1,58 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
 import axios from 'axios';
-import Swal from 'sweetalert2'
 
-const Login = () => {
-  const [formData, setFormData] = useState({ email: "", password: "" });
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Define state for login status
-  const [userdata, setUserdDta] = useState(null); // Define state for user data
-  
-  const navigate  = useNavigate();
+const Login = ({ onLogin }) => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
 
-  const handleChange = (e) => {
-    setFormData({...formData, [e.target.name]: e.target.value});
-  };
-  
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post("http://localhost:8000/login", formData);
+    const handleLogin = async (e) => {
+        e.preventDefault();
 
-      if (response.data.success) {
-        localStorage.setItem('token', response.data.remember_token);
-        setIsLoggedIn(true);
-        setUserData(response.data.data);
-        Swal.fire("Login Sukses", "Anda berhasil login", "success").then(() => {
-          navigate('/');
-        });
-      } else {
-        Swal.fire("Login Gagal", "Email atau password salah", "error");
-      }
-    } catch (error) {
-      Swal.fire("Login Gagal", "Terjadi kesalahan", "error");
-    }
-  };
+        try {
+            const response = await axios.post('http://localhost:8000/login', {
+                email,
+                password
+            }, {
+                withCredentials: true, // To send cookies (session cookies) with requests
+            });
 
-  return (
-    <div>
+            if (response.status === 204) {
+                // If login is successful, call the onLogin function to update the UI
+                onLogin();
+            }
+        } catch (err) {
+            setError('Invalid email or password');
+        }
+    };
+
+    return (
         <div>
-            <h1 className='text-center'>Login</h1>
-            <form onSubmit={handleSubmit}>
-                <input type="text" name='email' onChange={handleChange} placeholder='Email'/>  <br />
-                <input type="password" name='password' onChange={handleChange}  placeholder='Password'/> <br />
-                <input type="submit" value="Submit" />
+            <h2>Login</h2>
+            <form onSubmit={handleLogin}>
+                <div>
+                    <label>Email</label>
+                    <input
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+                </div>
+                <div>
+                    <label>Password</label>
+                    <input
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+                </div>
+                {error && <div style={{ color: 'red' }}>{error}</div>}
+                <button type="submit">Login</button>
             </form>
         </div>
-    </div>
-  )
-}
+    );
+};
 
-export default Login
+export default Login;
